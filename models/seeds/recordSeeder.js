@@ -1,4 +1,6 @@
 const db = require('../../config/mongoose');
+const bcrypt = require('bcryptjs');
+
 const User = require('../user');
 const Record = require('../record');
 const Category = require('../category');
@@ -60,7 +62,10 @@ db.once('open', async () => {
     await Promise.all(
       Array.from({ length: SEED_USER.length }, (_, i) => {
         const { name, email, password } = SEED_USER[i];
-        User.create({ name, email, password });
+        return bcrypt
+          .genSalt(10)
+          .then((salt) => bcrypt.hash(password, salt))
+          .then((hash) => User.create({ name, email, password: hash }));
       })
     );
     await Promise.all(
