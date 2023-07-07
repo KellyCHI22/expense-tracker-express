@@ -1,9 +1,7 @@
-// app.js
-// include packages and define server related variables
 const express = require('express');
 const exphbs = require('express-handlebars');
+const routes = require('./routes');
 
-// require mongoose
 require('./config/mongoose');
 
 const app = express();
@@ -18,13 +16,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 // setting routes
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-app.post('/', (req, res) => {
-  res.render('index');
-});
+app.use(routes);
 
 // starts the express server and listening for connections.
 app.listen(port, () => {
