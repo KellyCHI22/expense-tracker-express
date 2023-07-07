@@ -12,6 +12,7 @@ const port = 3000;
 // setting template engine
 app.engine('hbs', exphbs.engine({ defaultLayout: 'main', extname: '.hbs' })); // extname: '.hbs'，是指定副檔名為 .hbs，有了這行以後，我們才能把預設的長檔名改寫成短檔名
 app.set('view engine', 'hbs');
+app.use(express.static('public'));
 
 // setting body-parser
 app.use(express.urlencoded({ extended: true }));
