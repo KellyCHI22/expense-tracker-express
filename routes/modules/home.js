@@ -9,7 +9,8 @@ function formatDate(date) {
 
 router.get('/', async (req, res) => {
   try {
-    const records = await Record.find().lean().sort({ date: 'desc' });
+    const userId = req.user._id;
+    const records = await Record.find({ userId }).lean().sort({ date: 'desc' });
     const categories = await Category.find().lean();
     const totalExpense = records.reduce(
       (total, record) => record.amount + total,
