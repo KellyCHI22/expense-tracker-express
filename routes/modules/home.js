@@ -25,8 +25,28 @@ router.get('/', async (req, res) => {
         ),
       };
     });
+    const categoryTotals = {};
+    for (const record of formattedRecords) {
+      const { amount, category } = record;
+      if (categoryTotals[category.name]) {
+        categoryTotals[category.name] += amount;
+      } else {
+        categoryTotals[category.name] = amount;
+      }
+    }
+    // Initialize totals for any categories with no records
+    for (const category of categories) {
+      if (!categoryTotals[category.name]) {
+        categoryTotals[category.name] = 0;
+      }
+    }
     if (formattedRecords) {
-      res.render('index', { records: formattedRecords, totalExpense });
+      const stringifiedData = JSON.stringify(categoryTotals);
+      res.render('index', {
+        records: formattedRecords,
+        totalExpense,
+        stringifiedData,
+      });
     }
   } catch (err) {
     console.log(err);
