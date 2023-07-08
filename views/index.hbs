@@ -38,9 +38,16 @@
                     <td class='text-center'><a
                         href='/records/{{this._id}}/edit'
                       ><i class='fa-solid fa-pen-to-square'></i></a></td>
-                    <td class='text-center'><a
-                        href='/records/{{this._id}}/delete'
-                      ><i class='fa-solid fa-trash text-danger'></i></a></td>
+                    <td class='text-center'>
+                      <form
+                        action='./records/{{this._id}}?_method=DELETE'
+                        method='POST'
+                        style='display: inline;'
+                      >
+                        <button class='btn btn-transparent' type='submit'><i
+                            class='fa-solid fa-trash text-danger'
+                          ></i></button>
+                      </form></td>
                   </tr>
                 {{/each}}
               </tbody>
