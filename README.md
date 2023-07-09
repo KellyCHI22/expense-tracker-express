@@ -12,6 +12,13 @@ A simple expense tracker app where you can view, create, update and delete your 
 
 ![](public/screenshots/screenshot_3.png)
 
+### ⚙️ Features 功能
+
+- Users can login or create a new account
+- Users can manage their own expense records
+- Users can view all the records or filter them according to categories
+- Users can create, edit, delete their expense records
+
 ## 🚀 Run Locally
 
 1. Clone this repo to your local environment
