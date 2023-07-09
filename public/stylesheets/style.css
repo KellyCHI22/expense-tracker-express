@@ -1,0 +1,45 @@
+/* CSS HEX */
+:root {
+  --blue: #36a2ebff;
+  --red: #ff6384ff;
+  --orange: #ff9f40ff;
+  --yellow: #ffcd56ff;
+  --green: #4bc0c0ff;
+  --gray: #1c1917ff;
+}
+
+body {
+  color: var(--gray);
+}
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+.bg-theme {
+  background-color: var(--orange);
+}
+
+.btn-theme {
+  background-color: var(--orange);
+  color: white;
+}
+
+.btn-primary {
+  background-color: var(--blue);
+  border: none;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: hsl(204, 82%, 40%);
+}
+
+.navbar {
+  background-color: white;
+  color: var(--gray);
+}

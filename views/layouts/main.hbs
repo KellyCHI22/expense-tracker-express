@@ -10,17 +10,20 @@
       crossorigin='anonymous'
     ></script>
   </head>
-  <body class='bg-dark'>
-    <nav class='navbar navbar-dark bg-secondary'>
+  <body class='bg-theme'>
+    <nav class='navbar'>
       <div class='container-fluid'>
         <a class='navbar-brand' href='/'>
-          {{#if isAuthenticated}}{{user.name}} 的 {{/if}}
+          {{#if isAuthenticated}}
+            <span style='color: var(--blue)'>{{user.name}}</span>
+            的
+          {{/if}}
           家庭記帳本
         </a>
         {{#if isAuthenticated}}
-          <a href='/users/logout' class='btn btn-outline-light'>登出</a>
+          <a href='/users/logout' class='btn btn-theme'>登出</a>
         {{else}}
-          <a href='/users/login' class='btn btn-outline-light'>登入</a>
+          <a href='/users/login' class='btn btn-theme'>登入</a>
         {{/if}}
       </div>
     </nav>

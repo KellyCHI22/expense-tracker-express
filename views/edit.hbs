@@ -6,7 +6,7 @@
           <div class='mb-3 d-block text-center'>
             <h2>修改支出資訊</h2>
           </div>
-          <form id='record-form' action='/records/new' method='POST'>
+          <form id='record-form' action='/records/{{ record._id }}/edit?_method=PUT' method='POST'>
             <div class='mb-3'>
               <label for='name' class='mb-2'>名稱</label>
               <input

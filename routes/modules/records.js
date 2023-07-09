@@ -3,6 +3,7 @@ const router = express.Router();
 const Category = require('../../models/category');
 const Record = require('../../models/record');
 
+// get all records
 router.get('/new', async (req, res) => {
   try {
     const categories = await Category.find().lean();
@@ -12,6 +13,8 @@ router.get('/new', async (req, res) => {
   }
 });
 
+// add a new record
+// todo error handling
 router.post('/new', async (req, res) => {
   const userId = req.user._id;
   return Record.create({ ...req.body, userId })
@@ -19,6 +22,7 @@ router.post('/new', async (req, res) => {
     .catch((err) => console.log(err));
 });
 
+// get edit page of a record
 router.get('/:record_id/edit', async (req, res) => {
   const userId = req.user._id;
   const _id = req.params.record_id;
@@ -50,6 +54,16 @@ router.get('/:record_id/edit', async (req, res) => {
     .catch((error) => console.log(error));
 });
 
+// 編輯特定 todo
+router.put('/:record_id/edit', (req, res) => {
+  const userId = req.user._id;
+  const _id = req.params.record_id;
+  return Record.findOneAndUpdate({ _id, userId }, req.body)
+    .then(() => res.redirect(`/`))
+    .catch((error) => console.log(error));
+});
+
+// delete a record
 router.delete('/:record_id', async (req, res) => {
   const userId = req.user._id;
   const _id = req.params.record_id;
