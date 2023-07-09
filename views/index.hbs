@@ -5,15 +5,44 @@
       <div class='card'>
         <div class='card-body'>
           <div class='mb-3 d-flex justify-content-center'>
-            <div class='h-100 my-auto'>
-              <h2 class=''>總支出</h2>
+            <div class='h-100 my-auto text-center'>
+              <h2 class=''>
+                {{#if currentCategory}}
+                  {{currentCategory}}
+                {{else}}
+                  總支出
+                {{/if}}</h2>
               <p style='font-size: 5rem; color: #FF9900'>{{totalExpense}}</p>
+              <span style='color:#FF9900'>NTD</span>
             </div>
-            <div style='width: 300px;'>
-              <canvas id='myChart'></canvas>
-            </div>
-          </div>
 
+            {{#if currentCategory}}{{else}}
+              <div style='width: 300px;'>
+                <canvas id='myChart'></canvas></div>
+            {{/if}}
+
+          </div>
+          <div class='dropdown d-flex justify-content-end mb-3'>
+            <a
+              class='btn btn-theme dropdown-toggle'
+              href='#'
+              role='button'
+              data-bs-toggle='dropdown'
+              aria-expanded='false'
+            >
+              篩選支出類別
+            </a>
+
+            <ul class='dropdown-menu'>
+              <li><a class='dropdown-item' href='/'>全部類別</a></li>
+              {{#each categories}}
+                <li><a
+                    class='dropdown-item'
+                    href='/category/{{this._id}}'
+                  >{{this.name}}</a></li>
+              {{/each}}
+            </ul>
+          </div>
           <div class='mx-auto'>
             <table class='table table-hover'>
               <thead>
@@ -44,9 +73,11 @@
                         method='POST'
                         style='display: inline;'
                       >
-                        <button class='btn btn-transparent' type='submit'><i
-                            class='fa-solid fa-trash text-danger'
-                          ></i></button>
+                        <button
+                          class='btn btn-transparent'
+                          type='submit'
+                          onclick='return confirmDelete()'
+                        ><i class='fa-solid fa-trash text-danger'></i></button>
                       </form></td>
                   </tr>
                 {{/each}}
@@ -73,4 +104,8 @@
   '金額', data: data, borderWidth: 1 }] }, options: { scales: { xAxes: [{
   gridLines: { display: false } }], yAxes: [{ gridLines: { display: false } }] }
   } });
+</script>
+<script>
+  function confirmDelete() { const result = confirm('確定刪除該筆支出？'); if
+  (result) { alert('已刪除支出紀錄！'); return true; } else { return false; } }
 </script>
