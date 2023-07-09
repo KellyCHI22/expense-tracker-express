@@ -83,6 +83,7 @@ ctrl + c
 - passport 0.6.0
 - passport-local 1.0.0
 - mongoose 7.3.2
+- connect-flash 0.1.1
 - Bootstrap 5.1.3
 - Font-awesome 6.2.1
 - Chart.js 4.3.0

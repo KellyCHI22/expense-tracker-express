@@ -7,12 +7,17 @@ function getLoginPage(req, res) {
 }
 
 function login(req, res) {
-  return passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-  })(req, res);
+  const { email, password } = req.body;
+  if (!email.trim().length || !password.trim().length) {
+    req.flash('danger_msg', 'Email 和 Password 不可空白！');
+    return res.redirect('/users/login');
+  } else {
+    return passport.authenticate('local', {
+      successRedirect: '/',
+      failureRedirect: '/users/login',
+    })(req, res);
+  }
 }
-
 function getSignupPage(req, res) {
   res.render('register');
 }

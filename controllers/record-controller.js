@@ -61,8 +61,12 @@ async function getNewPage(req, res) {
   }
 }
 
-// todo add error handling
 async function addNewRecord(req, res) {
+  const { amount } = req.body;
+  if (amount < 0) {
+    req.flash('danger_msg', '金額不可小於 0！');
+    return res.redirect('/records/new');
+  }
   const userId = req.user._id;
   return Record.create({ ...req.body, userId })
     .then(() => res.redirect('/'))
